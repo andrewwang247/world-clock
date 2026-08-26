@@ -1,0 +1,68 @@
+# Extensionless files
+*
+!*/
+!*.*
+!Makefile
+
+# Executables and debug files
+*.exe
+*.dSYM
+*.stackdump
+build/
+env/
+compile_commands.json
+
+# Visual debugger configurations
+.vscode/
+.vs/
+*.vcxproj
+*.vcxproj.*
+*.xcodeproj/
+
+# Output files
+*.log
+*.out
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Prerequisites
+*.d
+
+# macOS system files
+*.DS_Store
+
+# Google Drive
+Icon
+
+# Files created by text editors
+*~
+*.lock
+*.swp
