@@ -23,7 +23,6 @@ class zones {
  private:
   static constexpr auto CLEAR_TEMPLATE = "\x1b[{}A\x1b[1G";
   std::vector<const tz_t*> m_tzs;
-  std::string m_clear_display;
 
  public:
   /**

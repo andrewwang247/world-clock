@@ -23,9 +23,7 @@ using std::string_view;
 namespace chrono = std::chrono;
 namespace ranges = std::ranges;
 
-zones::zones()
-    : m_tzs({chrono::current_zone()}),
-      m_clear_display(format(CLEAR_TEMPLATE, 1)) {}
+zones::zones() : m_tzs({chrono::current_zone()}) {}
 
 zones::zones(istream& is, instant_t time) {
   const auto& db = chrono::get_tzdb();
@@ -42,10 +40,11 @@ zones::zones(istream& is, instant_t time) {
   m_tzs.erase(unique_begin, m_tzs.end());
 
   m_tzs.shrink_to_fit();
-  m_clear_display = format(CLEAR_TEMPLATE, m_tzs.size());
 }
 
-void zones::clear_output(ostream& os) const { os << m_clear_display; }
+void zones::clear_output(ostream& os) const {
+  os << format(CLEAR_TEMPLATE, m_tzs.size());
+}
 
 const tz_t* zones::get_valid_zone(const chrono::tzdb& db, string_view token) {
   const auto link_iter =
