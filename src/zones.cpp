@@ -3,7 +3,7 @@ Time zone management implementation.
 
 Copyright 2026. Andrew Wang.
 */
-#include "zone.h"
+#include "zones.h"
 
 #include <algorithm>
 #include <chrono>
@@ -23,11 +23,18 @@ using std::string_view;
 namespace chrono = std::chrono;
 namespace ranges = std::ranges;
 
+zones::zones()
+    : m_tzs({chrono::current_zone()}),
+      m_clear_display(format(CLEAR_TEMPLATE, 1)) {}
+
 zones::zones(istream& is, instant_t time) {
   const auto& db = chrono::get_tzdb();
   for (string token; is >> token;) {
     const auto* tz = get_valid_zone(db, token);
     m_tzs.emplace_back(tz);
+  }
+  if (m_tzs.empty()) {
+    throw runtime_error("No time zones were specified.");
   }
 
   ranges::sort(m_tzs, cmp{time});
@@ -35,7 +42,7 @@ zones::zones(istream& is, instant_t time) {
   m_tzs.erase(unique_begin, m_tzs.end());
 
   m_tzs.shrink_to_fit();
-  m_clear_display = format("\x1b[{}A\x1b[1G", m_tzs.size());
+  m_clear_display = format(CLEAR_TEMPLATE, m_tzs.size());
 }
 
 void zones::clear_output(ostream& os) const { os << m_clear_display; }

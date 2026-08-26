@@ -21,10 +21,16 @@ using tz_t = std::chrono::time_zone;
  */
 class zones {
  private:
+  static constexpr auto CLEAR_TEMPLATE = "\x1b[{}A\x1b[1G";
   std::vector<const tz_t*> m_tzs;
   std::string m_clear_display;
 
  public:
+  /**
+   * @brief Construct with only current time zone.
+   */
+  explicit zones();
+
   /**
    * @brief Construct from input stream with time zones. If istream is empty,
    * default to current zone.
