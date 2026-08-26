@@ -14,7 +14,7 @@ OPT := -Os -DNDEBUG
 SRC_DIR := ./src
 BUILD_DIR := ./build
 
-# Gather all expected .cpp files for each executable and expected .o
+# Gather all expected .cpp files
 
 CPP := $(wildcard $(SRC_DIR)/*.cpp)
 
@@ -27,7 +27,7 @@ OBJS := $(CPP:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 .PHONY: release
 release: $(BUILD_DIR)/$(EXE)
 
-# Run application or tests
+# Run application
 
 .PHONY: run
 run: release
@@ -43,7 +43,7 @@ $(BUILD_DIR)/$(EXE): $(OBJS)
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(OPT) -c $< -o $@
 
-# Create build directories
+# Create build directory
 
 $(BUILD_DIR):
 	mkdir -p $@
@@ -56,6 +56,6 @@ clean:
 
 # Include .d dependencies
 
-RELEASE_DEPS := $(CPP:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.d)
+DEPS := $(CPP:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.d)
 
--include $(RELEASE_DEPS)
+-include $(DEPS)
