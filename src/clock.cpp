@@ -32,7 +32,7 @@ int main() {
   while (true) {
     for (const auto zone_time : manager.localize(system_time)) {
       const auto name = zone_time.get_time_zone()->name();
-      cout << format("{:<32}{:%a %b %d %r %z}\n", name, zone_time);
+      cout << format("{:<32}{:%a %b-%d %r %z}\n", name, zone_time);
     }
     cout.flush();
 
