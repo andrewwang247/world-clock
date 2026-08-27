@@ -31,8 +31,7 @@ class zones {
   explicit zones();
 
   /**
-   * @brief Construct from input stream with time zones. If istream is empty,
-   * default to current zone.
+   * @brief Construct from input stream with time zones.
    * @param is Input stream with white-space separated zones.
    * @param time System time at initialization.
    */
