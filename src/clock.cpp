@@ -23,6 +23,7 @@ namespace chrono = std::chrono;
 
 int main() {
   ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
 
   auto system_time =
       chrono::time_point_cast<chrono::seconds>(chrono::system_clock::now());
