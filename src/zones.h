@@ -58,21 +58,6 @@ class zones {
    */
   static const tz_t* get_valid_zone(const std::chrono::tzdb& db,
                                     std::string_view token);
-
-  /**
-   * @brief Custom comparator for time zones given a time point.
-   */
-  struct cmp {
-    instant_t m_time;
-
-    /**
-     * @brief Compare two time zones with offset then name.
-     * @param lhs The left time zone.
-     * @param rhs The right time zone.
-     * @return Whether lhs compares less than rhs.
-     */
-    bool operator()(const tz_t* lhs, const tz_t* rhs) const;
-  };
 };
 
 // AUTO RETURN TYPE IMPLEMENTATIONS

@@ -33,7 +33,7 @@ int main() {
   while (true) {
     for (const auto zone_time : manager.localize(system_time)) {
       const auto name = zone_time.get_time_zone()->name();
-      println("{:<32}{:%a %b-%d %r %z}", name, zone_time);
+      println("{:<32}{:%a %b-%d %r %Ez}", name, zone_time);
     }
     fflush(stdout);
 

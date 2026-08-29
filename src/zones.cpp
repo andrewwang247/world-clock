@@ -36,7 +36,14 @@ zones::zones(istream& is, instant_t time) {
     throw runtime_error("No time zones were specified.");
   }
 
-  ranges::sort(m_tzs, cmp{time});
+  const auto cmp = [time](const tz_t* lhs, const tz_t* rhs) {
+    const auto lhs_offset = lhs->get_info(time).offset;
+    const auto rhs_offset = rhs->get_info(time).offset;
+    return lhs_offset != rhs_offset ? lhs_offset < rhs_offset
+                                    : lhs->name() < rhs->name();
+  };
+  ranges::sort(m_tzs, cmp);
+
   const auto unique_begin = ranges::unique(m_tzs).begin();
   m_tzs.erase(unique_begin, m_tzs.end());
 }
@@ -52,11 +59,4 @@ const tz_t* zones::get_valid_zone(const chrono::tzdb& db, string_view token) {
   }
   // Will throw runtime_error if zone does not exist.
   return db.locate_zone(token);
-}
-
-bool zones::cmp::operator()(const tz_t* lhs, const tz_t* rhs) const {
-  const auto lhs_offset = lhs->get_info(m_time).offset;
-  const auto rhs_offset = rhs->get_info(m_time).offset;
-  return lhs_offset != rhs_offset ? lhs_offset < rhs_offset
-                                  : lhs->name() < rhs->name();
 }
