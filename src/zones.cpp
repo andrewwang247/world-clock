@@ -39,8 +39,6 @@ zones::zones(istream& is, instant_t time) {
   ranges::sort(m_tzs, cmp{time});
   const auto unique_begin = ranges::unique(m_tzs).begin();
   m_tzs.erase(unique_begin, m_tzs.end());
-
-  m_tzs.shrink_to_fit();
 }
 
 void zones::clear_stdout() const { print(CLEAR_TEMPLATE, m_tzs.size()); }
