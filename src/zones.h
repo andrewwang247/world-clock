@@ -45,10 +45,9 @@ class zones {
   inline auto localize(instant_t time) const;
 
   /**
-   * @brief Clear the output assuming one line per zone.
-   * @param os The output stream to clear.
+   * @brief Clear stdout assuming one line per zone.
    */
-  void clear_output(std::ostream& os) const;
+  void clear_stdout() const;
 
  private:
   /**

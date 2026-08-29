@@ -9,13 +9,14 @@ Copyright 2026. Andrew Wang.
 #include <chrono>
 #include <format>
 #include <iostream>
+#include <print>
 #include <stdexcept>
 #include <string>
 #include <string_view>
 
 using std::format;
 using std::istream;
-using std::ostream;
+using std::print;
 using std::runtime_error;
 using std::string;
 using std::string_view;
@@ -42,9 +43,7 @@ zones::zones(istream& is, instant_t time) {
   m_tzs.shrink_to_fit();
 }
 
-void zones::clear_output(ostream& os) const {
-  os << format(CLEAR_TEMPLATE, m_tzs.size());
-}
+void zones::clear_stdout() const { print(CLEAR_TEMPLATE, m_tzs.size()); }
 
 const tz_t* zones::get_valid_zone(const chrono::tzdb& db, string_view token) {
   const auto link_iter =

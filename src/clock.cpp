@@ -6,16 +6,17 @@ Copyright 2026. Andrew Wang
 #include <unistd.h>
 
 #include <chrono>
-#include <format>
+#include <cstdio>
 #include <iostream>
+#include <print>
 #include <thread>
 
 #include "zones.h"
 
 using std::cin;
-using std::cout;
-using std::format;
+using std::fflush;
 using std::ios_base;
+using std::println;
 using std::this_thread::sleep_until;
 
 namespace chrono = std::chrono;
@@ -32,11 +33,11 @@ int main() {
   while (true) {
     for (const auto zone_time : manager.localize(system_time)) {
       const auto name = zone_time.get_time_zone()->name();
-      cout << format("{:<32}{:%a %b-%d %r %z}\n", name, zone_time);
+      println("{:<32}{:%a %b-%d %r %z}", name, zone_time);
     }
-    cout.flush();
+    fflush(stdout);
 
     sleep_until(system_time += tick);
-    manager.clear_output(cout);
+    manager.clear_stdout();
   }
 }
