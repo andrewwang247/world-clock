@@ -6,7 +6,7 @@ EXE := clock
 
 CXX := clang++
 CPPFLAGS := -MMD
-CXXFLAGS := -std=c++20 -Wall -Werror -Wextra -Wconversion -pedantic -Wfloat-equal -Wshadow -Wdouble-promotion -Wundef
+CXXFLAGS := -std=c++23 -Wall -Werror -Wextra -Wconversion -pedantic -Wfloat-equal -Wshadow -Wdouble-promotion -Wundef
 OPT := -Os -DNDEBUG
 
 # Directory structure
