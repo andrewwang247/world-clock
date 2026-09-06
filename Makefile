@@ -6,7 +6,7 @@ EXE := clock
 
 CXX := clang++
 CPPFLAGS := -MMD
-CXXFLAGS := -std=c++23 -Werror -pedantic-errors -Weverything -Wno-c++98-compat
+CXXFLAGS := -std=c++23 -Werror -pedantic-errors -Weverything -Wno-c++98-compat -Wno-poison-system-directories
 OPT := -Os -DNDEBUG
 
 # Directory structure
