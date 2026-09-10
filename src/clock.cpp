@@ -16,12 +16,14 @@ Copyright 2026. Andrew Wang
 using std::cin;
 using std::fflush;
 using std::println;
+using std::setvbuf;
 using std::this_thread::sleep_until;
 
 namespace chrono = std::chrono;
 
 int main() {
   cin.tie(nullptr);
+  setvbuf(stdout, nullptr, _IOFBF, BUFSIZ);
   constexpr tick_t tick{1};
 
   auto sys_time = chrono::time_point_cast<tick_t>(chrono::system_clock::now());
