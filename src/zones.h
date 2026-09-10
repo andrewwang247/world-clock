@@ -12,8 +12,9 @@ Copyright 2026. Andrew Wang.
 #include <string_view>
 #include <vector>
 
-using instant_t = std::chrono::sys_time<std::chrono::seconds>;
-using zoned_t = std::chrono::zoned_time<std::chrono::seconds>;
+using tick_t = std::chrono::seconds;
+using instant_t = std::chrono::sys_time<tick_t>;
+using zoned_t = std::chrono::zoned_time<tick_t>;
 using tz_t = std::chrono::time_zone;
 
 /**
