@@ -24,6 +24,8 @@ using std::string_view;
 namespace chrono = std::chrono;
 namespace ranges = std::ranges;
 
+namespace wc {
+
 zones::zones() : m_tzs({chrono::current_zone()}) {}
 
 zones::zones(istream& is, instant_t time) {
@@ -60,3 +62,5 @@ const tz_t* zones::get_valid_zone(const chrono::tzdb& db, string_view token) {
   // Will throw runtime_error if zone does not exist.
   return db.locate_zone(token);
 }
+
+}  // namespace wc

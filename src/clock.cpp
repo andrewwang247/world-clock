@@ -18,6 +18,7 @@ using std::fflush;
 using std::println;
 using std::setvbuf;
 using std::this_thread::sleep_until;
+using wc::zones;
 
 namespace chrono = std::chrono;
 

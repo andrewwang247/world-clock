@@ -17,6 +17,8 @@ using instant_t = std::chrono::sys_time<tick_t>;
 using zoned_t = std::chrono::zoned_time<tick_t>;
 using tz_t = std::chrono::time_zone;
 
+namespace wc {
+
 /**
  * @brief Manage and validate time zones.
  */
@@ -67,3 +69,5 @@ auto zones::localize(instant_t time) const {
   const auto to_local = [time](const auto* tz) { return zoned_t{tz, time}; };
   return m_tzs | std::views::transform(to_local);
 }
+
+}  // namespace wc
