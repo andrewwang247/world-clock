@@ -53,11 +53,11 @@ zones::zones(istream& is, instant_t time) {
 void zones::clear_stdout() const { print(CLEAR_TEMPLATE, m_tzs.size()); }
 
 const tz_t* zones::get_valid_zone(const chrono::tzdb& db, string_view token) {
-  const auto link_iter =
-      ranges::lower_bound(db.links, token, {}, &chrono::time_zone_link::name);
-  if (link_iter != db.links.end() && link_iter->name() == token) {
-    throw runtime_error(format("{} is a link. Prefer canonical {}.", token,
-                               link_iter->target()));
+  if (const auto link_it = ranges::lower_bound(db.links, token, {},
+                                               &chrono::time_zone_link::name);
+      link_it != db.links.end() && link_it->name() == token) {
+    throw runtime_error(
+        format("{} is a link. Prefer canonical {}.", token, link_it->target()));
   }
   // Will throw runtime_error if zone does not exist.
   return db.locate_zone(token);
